@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * @author Yang
  */
 public class Matrix {
+    private final static String TAG = "[Matrix]";
 
     private HeadNode head = null;
     private ArrayList<Node> cache = null;
@@ -67,7 +68,7 @@ public class Matrix {
      * @param k The current iteration of the search operation
      */
     private void search(final int k) {
-        //System.out.println("search(" + k + ")");
+//        System.out.println(TAG + " search(" + k + ")");
         if (k == 0) {
             cache.clear();
         }
@@ -75,8 +76,7 @@ public class Matrix {
         Node root = head.getRight();
 
         if (root == head) {
-//			System.out.println("Find a solution in search(" + k + ")");
-
+//            System.out.println(TAG + " Find a solution in search(" + k + ")");
             final int size = cache.size();
             int[] rows = new int[size];
             for (int i = 0; i < size; i++) {

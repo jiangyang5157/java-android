@@ -3,7 +3,6 @@ package com.gmail.jiangyang5157.tookit.android.sql;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 /**
  * @author Yang 9/16/2015.
@@ -24,7 +23,7 @@ public abstract class BaseAppDatabaseOpenHelper extends SQLiteOpenHelper {
         String[] sqls = getCreateTableSqlsOnCreate();
         for (String sql : sqls) {
             db.execSQL(sql);
-            Log.d(TAG, sql);
+            System.out.println(TAG + " execSQL: " + sql);
         }
     }
 
@@ -33,11 +32,11 @@ public abstract class BaseAppDatabaseOpenHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.d(TAG, "Database going to upgrades from Version " + oldVersion + " to Version " + newVersion);
+        System.out.println(TAG + " Database going to upgrades from Version " + oldVersion + " to Version " + newVersion);
         String[] names = getDropTableNamesOnUpgrade();
         for (String name : names) {
             db.execSQL("drop table if exists " + name);
-            Log.d(TAG, "Drop table: " + name);
+            System.out.println(TAG + " Drop table: " + name);
         }
 
         onCreate(db);
