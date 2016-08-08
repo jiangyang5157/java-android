@@ -17,4 +17,8 @@ public class TimeUtils {
     public static final long MILLI_IN_MINUTE = 60 * MILLI_IN_SECOND;
     public static final long MILLI_IN_HOUR = 60 * MILLI_IN_MINUTE;
     public static final long MILLI_IN_DAY = 24 * MILLI_IN_HOUR;
+
+    public static double nano2milli(long time) {
+        return time * MULTIPLICATOR_NANO_2_MILLI;
+    }
 }
