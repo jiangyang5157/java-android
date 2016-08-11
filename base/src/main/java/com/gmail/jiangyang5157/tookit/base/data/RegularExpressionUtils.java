@@ -15,7 +15,7 @@ public class RegularExpressionUtils {
     // Tue, 15 Nov 1994 12:45:26 GMT
     public static final String DATE_TEMPLATE_HTTP_DATE = "EEE, dd MMM yyyy HH:mm:ss zzz";
 
-    public static final String URL_TEMPLATE = "^(https?:\\/\\/)+[\\w.:\\-]+(/[\\w.:\\-~!@#$%&+=|;?,]+)*";
+    public static final String URL_TEMPLATE = "(https?:\\/\\/)+[\\w.:\\-]+(/[\\w.:\\-~!@#$%&+=|;?,]+)*";
 
     public static void main(String[] args) {
         String[] contents = new String[]{
@@ -34,6 +34,7 @@ public class RegularExpressionUtils {
                 "http://developer.android.com/index.html/",
                 "http://developer.android.com/index.html///",
                 "http://developer.android.com/index.html///asdasd-asd.asd--asd//",
+                "Indonesia<br>BaliIsForMe.com (http://www.BaliIsForMe.com)",
         };
 
         Pattern pattern = Pattern.compile(URL_TEMPLATE);
