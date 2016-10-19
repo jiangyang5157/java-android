@@ -1,28 +1,23 @@
 package com.gmail.jiangyang5157.tookit.base.parser;
-
-import java.util.Calendar;
 import java.util.HashMap;
 
 /**
  * @author Yang
- * @since 10/18/2016
- * <p>
+ * @since 10/20/2016
+ *
  * Event recurrence utility functions.
- * <p>
+ * <p/>
  * This RRULE parser is created by modifying the open sourced code:
  * https://android.googlesource.com/platform/frameworks/opt/calendar/+/ics-mr1/src/com/android/calendarcommon/EventRecurrence.java
- * <p>
- * To use by passing non-null Recurrence string to parse(recur) function.
- * Result will be cached in each field, use data as needed.
  */
 public class RecurrenceRule {
     private static String TAG = "RecurrenceRule";
 
-    public int mFreq; // freq2String(freq) returns "Yearly", "Monthly", etc, modified as required
+    public int mFreq;
     public String mUntil;
     public int mCount;
     public int mInterval;
-    public int mWkst; // day2String(wkst) returns "Sunday", "Monday", etc, modified as required. If not specified, week starts on Monday
+    public int mWkst;
 
     public int[] mBysecond;
     public int mBysecondCount;
@@ -153,58 +148,6 @@ public class RecurrenceRule {
     private static final boolean ONLY_ONE_UNTIL_COUNT = false;
 
     /**
-     * Converts one of the Calendar.SUNDAY constants to the SU, MO, etc.
-     * constants.  btw, I think we should switch to those here too, to
-     * get rid of this function, if possible.
-     */
-    public static int calendarDay2Day(int day) {
-        switch (day) {
-            case Calendar.SUNDAY:
-                return SU;
-            case Calendar.MONDAY:
-                return MO;
-            case Calendar.TUESDAY:
-                return TU;
-            case Calendar.WEDNESDAY:
-                return WE;
-            case Calendar.THURSDAY:
-                return TH;
-            case Calendar.FRIDAY:
-                return FR;
-            case Calendar.SATURDAY:
-                return SA;
-            default:
-                throw new RuntimeException("bad day of week: " + day);
-        }
-    }
-
-    /**
-     * Converts one of the SU, MO, etc. constants to the Calendar.SUNDAY
-     * constants.  btw, I think we should switch to those here too, to
-     * get rid of this function, if possible.
-     */
-    public static int day2CalendarDay(int day) {
-        switch (day) {
-            case SU:
-                return Calendar.SUNDAY;
-            case MO:
-                return Calendar.MONDAY;
-            case TU:
-                return Calendar.TUESDAY;
-            case WE:
-                return Calendar.WEDNESDAY;
-            case TH:
-                return Calendar.THURSDAY;
-            case FR:
-                return Calendar.FRIDAY;
-            case SA:
-                return Calendar.SATURDAY;
-            default:
-                throw new RuntimeException("bad day of week: " + day);
-        }
-    }
-
-    /**
      * Converts one of the internal day constants (SU, MO, etc.) to the
      * two-letter string representing that constant.
      *
@@ -216,19 +159,19 @@ public class RecurrenceRule {
     public static String day2String(int day) {
         switch (day) {
             case SU:
-                return "Sunday";
+                return "SU";
             case MO:
-                return "Monday";
+                return "MO";
             case TU:
-                return "Tuesday";
+                return "TU";
             case WE:
-                return "Wednesday";
+                return "WE";
             case TH:
-                return "Thursday";
+                return "TH";
             case FR:
-                return "Friday";
+                return "FR";
             case SA:
-                return "Saturday";
+                return "SA";
             default:
                 throw new IllegalArgumentException("bad day argument: " + day);
         }
@@ -241,19 +184,19 @@ public class RecurrenceRule {
     public static String freq2String(int freq) {
         switch (freq) {
             case SECONDLY:
-                return "Secondly";
+                return "SECONDLY";
             case MINUTELY:
-                return "Minutely";
+                return "MINUTELY";
             case HOURLY:
-                return "Hourly";
+                return "HOURLY";
             case DAILY:
-                return "Daily";
+                return "DAILY";
             case WEEKLY:
-                return "Weekly";
+                return "WEEKLY";
             case MONTHLY:
-                return "Monthly";
+                return "MONTHLY";
             case YEARLY:
-                return "Yearly";
+                return "YEARLY";
             default:
                 throw new IllegalArgumentException("bad freq argument: " + freq);
         }
@@ -327,12 +270,12 @@ public class RecurrenceRule {
 
     /**
      * Determines whether two integer arrays contain identical elements.
-     * <p>
+     * <p/>
      * The native implementation over-allocated the arrays (and may have stuff left over from
      * a previous run), so we can't just check the arrays -- the separately-maintained count
      * field also matters.  We assume that a null array will have a count of zero, and that the
      * array can hold as many elements as the associated count indicates.
-     * <p>
+     * <p/>
      * TODO: replace this with Arrays.equals() when the old parser goes away.
      */
     private static boolean arraysEqual(int[] array1, int count1, int[] array2, int count2) {
@@ -413,10 +356,10 @@ public class RecurrenceRule {
     /**
      * Determines whether this rule specifies a simple monthly rule by weekday, such as
      * "FREQ=MONTHLY;BYDAY=3TU" (the 3rd Tuesday of every month).
-     * <p>
+     * <p/>
      * Negative days, e.g. "FREQ=MONTHLY;BYDAY=-1TU" (the last Tuesday of every month),
      * will cause "false" to be returned.
-     * <p>
+     * <p/>
      * Rules that fire every week, such as "FREQ=MONTHLY;BYDAY=TU" (every Tuesday of every
      * month) will cause "false" to be returned.  (Note these are usually expressed as
      * WEEKLY rules, and hence are uncommon.)
@@ -438,12 +381,12 @@ public class RecurrenceRule {
 
     /**
      * Resets parser-modified fields to their initial state.  Does not alter mStartDate.
-     * <p>
+     * <p/>
      * The original parser always set all of the "count" fields, "wkst", and "until",
      * essentially allowing the same object to be used multiple times by calling parse().
      * It's unclear whether this behavior was intentional.  For now, be paranoid and
      * preserve the existing behavior by resetting the fields.
-     * <p>
+     * <p/>
      * We don't need to touch the integer arrays; they will either be ignored or
      * overwritten.  The "mStartDate" field is not set by the parser, so we ignore it here.
      */
@@ -461,7 +404,7 @@ public class RecurrenceRule {
      *
      * @param recur The recurrence rule to parse (in un-folded form).
      */
-    public void parse(String recur) {
+    public RecurrenceRule parse(String recur) {
         /*
          * From RFC 2445 section 4.3.10:
          *
@@ -527,7 +470,7 @@ public class RecurrenceRule {
         /* TODO: replace with "if (freq != 0) throw" if nothing requires this */
         resetFields();
         if (recur == null) {
-            return;
+            return this;
         }
         int parseFlags = 0;
         String[] parts;
@@ -582,6 +525,7 @@ public class RecurrenceRule {
                 System.out.println(TAG + "Warning: rrule has both UNTIL and COUNT: " + recur);
             }
         }
+        return this;
     }
 
     /**
@@ -879,9 +823,6 @@ public class RecurrenceRule {
     }
 
     public static void main(String[] args) {
-        RecurrenceRule rrule = new RecurrenceRule();
-        rrule.parse("FREQ=MONTHLY;INTERVAL=1;BYMONTHDAY=1,15");
-        String s = rrule.toString();
-        System.out.println(TAG + ": " + s);
+        System.out.println(TAG + ": " + new RecurrenceRule().parse("FREQ=MONTHLY;INTERVAL=1;BYMONTHDAY=1,15"));
     }
 }
