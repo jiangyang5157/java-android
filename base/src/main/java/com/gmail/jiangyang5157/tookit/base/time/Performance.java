@@ -8,7 +8,7 @@ import java.util.Random;
  * @since 7/16/2016
  */
 public class Performance {
-    private static final String TAG = "[Performance]";
+    public static final String TAG = "[Performance]";
 
     private ArrayList<Long> breakpoints;
 
@@ -32,7 +32,7 @@ public class Performance {
     private void printEvaluation(double nanoMultiplicator) {
         int size = breakpoints.size();
         for (int prev = 0, i = prev + 1; i < size; prev++, i++) {
-            System.out.println(TAG + " dt(" + i + "-" + prev + ") = " + ((breakpoints.get(i) - breakpoints.get(prev))) * nanoMultiplicator);
+            System.out.println(TAG + " dt(" + i + "-" + prev + ") = " + ((breakpoints.get(i) - breakpoints.get(prev)) * nanoMultiplicator));
         }
         breakpoints.clear();
     }
