@@ -9,13 +9,21 @@ import java.util.regex.Pattern;
  */
 public class RegularExpressionUtils {
 
-    public static final String DATE_TEMPLATE_LABEL = "MMM dd, yyyy HH:mm:ss";
-    public static final String DATE_TEMPLATE_FILE_NAME = "yyyyMMddHHmmss";
+    public static final String DATE_REGEX_LABEL = "MMM dd, yyyy HH:mm:ss";
+    public static final String DATE_REGEX_FILE_NAME = "yyyyMMddHHmmss";
 
     // Tue, 15 Nov 1994 12:45:26 GMT
-    public static final String DATE_TEMPLATE_HTTP_DATE = "EEE, dd MMM yyyy HH:mm:ss zzz";
+    public static final String DATE_REGEX_HTTP_DATE = "EEE, dd MMM yyyy HH:mm:ss zzz";
 
-    public static final String URL_TEMPLATE = "(https?:\\/\\/)+[\\w.:\\-]+(/[\\w.:\\-~!@#$%&+=|;?,]+)*";
+    /**
+     * Accurate regex that captures the four parts of the IP Address
+     */
+    public static final String IP_ADDRESS_REGEX = "^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
+    /**
+     * Accurate regex that captures the Port
+     */
+    public static final String PORT_REGEX = "^([\\d]{1,5})$";
+    public static final String URL_REGEX = "(https?:\\/\\/)+[\\w.:\\-]+(/[\\w.:\\-~!@#$%&+=|;?,]+)*";
 
     public static void main(String[] args) {
         String[] contents = new String[]{
@@ -37,7 +45,7 @@ public class RegularExpressionUtils {
                 "Indonesia<br>BaliIsForMe.com (http://www.BaliIsForMe.com)",
         };
 
-        Pattern pattern = Pattern.compile(URL_TEMPLATE);
+        Pattern pattern = Pattern.compile(URL_REGEX);
         for (String content : contents) {
             Matcher matcher = pattern.matcher(content);
             System.out.println();
