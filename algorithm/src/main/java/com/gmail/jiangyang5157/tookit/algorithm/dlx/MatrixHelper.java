@@ -27,7 +27,7 @@ public class MatrixHelper {
         // new head
         HeadNode head = new HeadNode(columnsCount);
 
-        // - head - root 1 - root 2 - .... - root columnCount -
+        // - head - root 0 - root 1 - .... - root n -
         Node root = head;
         for (int j = 0; j < columnsCount; j++, root = root.getRight()) {
             RootNode rightNode = new RootNode(j);
@@ -40,9 +40,9 @@ public class MatrixHelper {
         // |
         // root x
         // |
-        // node 1
+        // node 0
         // |
-        // node 2
+        // node 1
         // |
         // ....
         // node n
