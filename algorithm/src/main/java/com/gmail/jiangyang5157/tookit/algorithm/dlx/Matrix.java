@@ -3,8 +3,10 @@ package com.gmail.jiangyang5157.tookit.algorithm.dlx;
 import java.util.ArrayList;
 
 /**
+ * see more efficient golang implementation: https://github.com/jiangyang5157/go/tree/master/dlx
  * @author Yang
  */
+@Deprecated
 public class Matrix {
     private final static String TAG = "[Matrix]";
 
