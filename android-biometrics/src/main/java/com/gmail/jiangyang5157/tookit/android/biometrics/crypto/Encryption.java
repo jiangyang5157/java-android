@@ -58,7 +58,8 @@ abstract class Encryption extends Crypto {
         try {
             byte[] bytes = Base64.decode(encrypted, Base64.DEFAULT);
             return cipher.doFinal(bytes);
-        } catch (IllegalBlockSizeException | BadPaddingException e) {
+        } catch (IllegalBlockSizeException
+                | BadPaddingException e) {
             throw new RuntimeException("Failed to decrypt", e);
         }
     }

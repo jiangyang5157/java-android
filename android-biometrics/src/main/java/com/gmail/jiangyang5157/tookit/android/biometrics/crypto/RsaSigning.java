@@ -7,14 +7,17 @@ import android.support.annotation.NonNull;
 
 import com.gmail.jiangyang5157.tookit.android.biometrics.error.FingerprintChangedException;
 
+import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.security.KeyStore;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
 import java.security.Signature;
+import java.security.cert.CertificateException;
 
 /**
  * Created by yangjiang on 25/03/17.
@@ -46,7 +49,9 @@ public class RsaSigning extends Signing {
         try {
             keyPairGenerator = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_RSA, mProvider);
             keyPairGenerator.initialize(builder.build());
-        } catch (NoSuchAlgorithmException | NoSuchProviderException | InvalidAlgorithmParameterException e) {
+        } catch (NoSuchAlgorithmException
+                | NoSuchProviderException
+                | InvalidAlgorithmParameterException e) {
             throw new RuntimeException("Failed to generate key pair", e);
         }
         return keyPairGenerator.generateKeyPair();
@@ -67,13 +72,20 @@ public class RsaSigning extends Signing {
     @Override
     public Signature providesSigningSignature() throws FingerprintChangedException {
         Signature signature = providesSignature();
+        KeyStore keyStore = providesKeystore();
         try {
-            PrivateKey key = providesPrivateKey();
+            keyStore.load(null);
+            PrivateKey key = providesPrivateKey(keyStore);
             signature.initSign(key);
             return signature;
         } catch (KeyPermanentlyInvalidatedException e) {
+            // Throw KeyPermanentlyInvalidatedException if any new Fingerprint setup since the keypair created
+            // Won't throw KeyPermanentlyInvalidatedException if any Fingerprint has been deleted since the keypair created
             throw new FingerprintChangedException();
-        } catch (InvalidKeyException e) {
+        } catch (InvalidKeyException
+                | CertificateException
+                | NoSuchAlgorithmException
+                | IOException e) {
             throw new RuntimeException(e);
         }
     }

@@ -53,7 +53,8 @@ abstract class Signing extends Crypto {
             signature.initVerify(publicKey);
             signature.update(raw);
             return signature.verify(signtureBytes);
-        } catch (InvalidKeyException | SignatureException e) {
+        } catch (InvalidKeyException
+                | SignatureException e) {
             throw new RuntimeException(e);
         }
     }

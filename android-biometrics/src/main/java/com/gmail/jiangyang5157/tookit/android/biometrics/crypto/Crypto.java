@@ -46,16 +46,6 @@ public abstract class Crypto {
         }
     }
 
-    public PrivateKey providesPrivateKey(){
-        KeyStore keyStore = providesKeystore();
-        try {
-            keyStore.load(null);
-            return providesPrivateKey(keyStore);
-        } catch (IOException | NoSuchAlgorithmException | CertificateException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     PrivateKey providesPrivateKey(KeyStore keyStore) {
         try {
             return (PrivateKey) keyStore.getKey(mKeyName, null);
@@ -66,30 +56,10 @@ public abstract class Crypto {
         }
     }
 
-    public PublicKey providesPublicKey(){
-        KeyStore keyStore = providesKeystore();
-        try {
-            keyStore.load(null);
-            return providesPublicKey(keyStore);
-        } catch (IOException | NoSuchAlgorithmException | CertificateException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     PublicKey providesPublicKey(KeyStore keyStore) {
         try {
             return keyStore.getCertificate(mKeyName).getPublicKey();
         } catch (KeyStoreException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public PublicKey providesUnrestrictedPublicKey(){
-        KeyStore keyStore = providesKeystore();
-        try {
-            keyStore.load(null);
-            return providesUnrestrictedPublicKey(keyStore);
-        } catch (IOException | NoSuchAlgorithmException | CertificateException e) {
             throw new RuntimeException(e);
         }
     }
@@ -103,7 +73,8 @@ public abstract class Crypto {
              */
             KeyFactory keyFactory = KeyFactory.getInstance(publicKey.getAlgorithm());
             return keyFactory.generatePublic(new X509EncodedKeySpec(publicKey.getEncoded()));
-        } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
+        } catch (InvalidKeySpecException
+                | NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
     }
