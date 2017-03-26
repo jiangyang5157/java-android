@@ -17,6 +17,15 @@ public class MockServer {
 
     private static PublicKey publicKey;
 
+    public static String register() {
+        token = "this-is-the-token";
+        return token;
+    }
+
+    public static void uploadPublicKey(PublicKey pb) {
+        publicKey = pb;
+    }
+
     public static boolean verifyToken(String s) {
         return token.equals(s);
     }
@@ -30,23 +39,5 @@ public class MockServer {
         } catch (InvalidKeyException | SignatureException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public static void regiest(String s) {
-        token = s;
-    }
-
-    public static void regiest(String s, PublicKey pb) {
-        token = s;
-        publicKey = pb;
-    }
-
-    public static void deregiest() {
-        token = null;
-        publicKey = null;
-    }
-
-    public static String getToken() {
-        return token;
     }
 }
