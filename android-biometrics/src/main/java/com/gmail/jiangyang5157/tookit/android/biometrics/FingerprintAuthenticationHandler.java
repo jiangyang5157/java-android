@@ -20,7 +20,7 @@ import com.gmail.jiangyang5157.tookit.android.biometrics.error.SensorException;
  */
 public class FingerprintAuthenticationHandler extends FingerprintManager.AuthenticationCallback {
 
-    public interface AuthenticationCallback {
+    interface AuthenticationCallback {
         void onAuthenticated(FingerprintManager.AuthenticationResult result);
 
         void onAuthentication(BiometricsException e);
@@ -35,17 +35,17 @@ public class FingerprintAuthenticationHandler extends FingerprintManager.Authent
     private KeyguardManager mKeyguardManager;
     private FingerprintManager mFingerprintManager;
 
-    public FingerprintAuthenticationHandler(Context context) {
+    FingerprintAuthenticationHandler(Context context) {
         this(context, null);
     }
 
-    public FingerprintAuthenticationHandler(Context context, AuthenticationCallback authenticationCallback) {
+    FingerprintAuthenticationHandler(Context context, AuthenticationCallback authenticationCallback) {
         mKeyguardManager = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
         mFingerprintManager = (FingerprintManager) context.getSystemService(Context.FINGERPRINT_SERVICE);
         mAuthenticationCallback = authenticationCallback;
     }
 
-    public void checkDeviceSupport() throws OsVersionException, SensorException {
+    void checkDeviceSupport() throws OsVersionException, SensorException {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             throw new OsVersionException();
         }
@@ -54,7 +54,7 @@ public class FingerprintAuthenticationHandler extends FingerprintManager.Authent
         }
     }
 
-    public void checkAuthenticationAvailable() throws NoEnrolledScreenLockException, NoEnrolledFingerprintException {
+    void checkAuthenticationAvailable() throws NoEnrolledScreenLockException, NoEnrolledFingerprintException {
         if (!mKeyguardManager.isKeyguardSecure()) {
             throw new NoEnrolledScreenLockException();
         }
@@ -63,13 +63,13 @@ public class FingerprintAuthenticationHandler extends FingerprintManager.Authent
         }
     }
 
-    public void startListening(FingerprintManager.CryptoObject cryptoObject) {
+    void startListening(FingerprintManager.CryptoObject cryptoObject) {
         mSelfCancelled = false;
         mCancellationSignal = new CancellationSignal();
         mFingerprintManager.authenticate(cryptoObject, mCancellationSignal, 0, this, null);
     }
 
-    public void stopListening() {
+    void stopListening() {
         if (mCancellationSignal == null) {
             return;
         }

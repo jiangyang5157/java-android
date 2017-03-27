@@ -10,12 +10,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.gmail.jiangyang5157.tookit.R;
+import com.gmail.jiangyang5157.tookit.android.biometrics.crypto.RsaEncryption;
 
-public class DemoActivity extends AppCompatActivity implements FingerprintAuthenticationContract.View{
+public class DemoActivity extends AppCompatActivity implements FingerprintAuthContract.View {
 
     private TextView tvMessage;
 
-    private FingerprintAuthenticationPresenter mFingerprintAuthenticationPresenter;
+    private FingerprintAuthPresenter mFingerprintAuthenticationPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,16 +28,19 @@ public class DemoActivity extends AppCompatActivity implements FingerprintAuthen
         btnStart.setOnClickListener(btnStartOnClickListener);
         btnStop.setOnClickListener(btnStopOnClickListener);
 
-        mFingerprintAuthenticationPresenter = new FingerprintAuthenticationPresenter(this);
+        mFingerprintAuthenticationPresenter = new FingerprintAuthPresenter(this);
     }
 
     private View.OnClickListener btnStartOnClickListener = new Button.OnClickListener() {
         @Override
         public void onClick(View view) {
-            mFingerprintAuthenticationPresenter.startAuth();
+            boolean ready = mFingerprintAuthenticationPresenter.initialize(new RsaEncryption(FingerprintAuthPresenter.KEY_NAME));
+//            boolean ready = mFingerprintAuthenticationPresenter.initialize(new RsaSigning(FingerprintAuthPresenter.KEY_NAME));
+            if (ready) {
+                mFingerprintAuthenticationPresenter.startAuth();
+            }
         }
     };
-
 
     private View.OnClickListener btnStopOnClickListener = new Button.OnClickListener() {
         @Override

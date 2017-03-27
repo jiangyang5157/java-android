@@ -7,7 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
-import com.gmail.jiangyang5157.tookit.android.biometrics.FingerprintAuthenticationHandler;
+import com.gmail.jiangyang5157.tookit.android.biometrics.FingerprintAuthenticationPresenter;
+import com.gmail.jiangyang5157.tookit.android.biometrics.crypto.Crypto;
 import com.gmail.jiangyang5157.tookit.android.biometrics.crypto.RsaEncryption;
 import com.gmail.jiangyang5157.tookit.android.biometrics.crypto.RsaSigning;
 import com.gmail.jiangyang5157.tookit.android.biometrics.error.BiometricsException;
@@ -25,54 +26,18 @@ import javax.crypto.Cipher;
 /**
  * Created by yangjiang on 24/03/17.
  */
-public class FingerprintAuthenticationPresenter
-        implements FingerprintAuthenticationContract.Presenter, FingerprintAuthenticationHandler.AuthenticationCallback {
+public class FingerprintAuthPresenter extends FingerprintAuthenticationPresenter implements FingerprintAuthContract.Presenter {
 
-    private FingerprintAuthenticationContract.View mView;
+    public static final String KEY_NAME = "KEY_NAME";
 
-    private FingerprintAuthenticationHandler mFingerprintAuthenticationHandler;
+    private FingerprintAuthContract.View mView;
 
-    public FingerprintAuthenticationPresenter(@NonNull FingerprintAuthenticationContract.View view) {
+    public FingerprintAuthPresenter(@NonNull FingerprintAuthContract.View view) {
+        super(view.getContext());
         mView = view;
-        mFingerprintAuthenticationHandler = new FingerprintAuthenticationHandler(view.getContext(), this);
 
-//        prepare_Encryption(); // option 1
-        prepare_Signing(); // option 2
-    }
-
-    @Override
-    public void startAuth() {
-        try {
-            mFingerprintAuthenticationHandler.checkDeviceSupport();
-            mFingerprintAuthenticationHandler.checkAuthenticationAvailable();
-            if (ContextCompat.checkSelfPermission(mView.getContext(),
-                    Manifest.permission.USE_FINGERPRINT) == PackageManager.PERMISSION_GRANTED) {
-                mView.showMessage("startAuth");
-//                startAuth_Encryption();
-                startAuth_Signing();
-            }
-        } catch (OsVersionException e) {
-            mView.showMessage("OsVersionException: " + e.toString());
-        } catch (SensorException e) {
-            mView.showMessage("SensorException: " + e.toString());
-        } catch (NoEnrolledScreenLockException e) {
-            mView.showMessage("NoEnrolledScreenLockException: " + e.toString());
-            mView.showSecuritySettings();
-        } catch (NoEnrolledFingerprintException e) {
-            mView.showMessage("NoEnrolledFingerprintException: " + e.toString());
-            mView.showSecuritySettings();
-        }
-    }
-
-    @Override
-    public void stopAuth() {
-        mFingerprintAuthenticationHandler.stopListening();
-    }
-
-    @Override
-    public void onAuthenticated(FingerprintManager.AuthenticationResult result) {
-//        onAuthenticated_Encryption(result);
-        onAuthenticated_Signing(result);
+        init_Encryption();
+//        init_Signing();
     }
 
     @Override
@@ -80,14 +45,60 @@ public class FingerprintAuthenticationPresenter
         mView.showMessage(e.toString());
     }
 
+    @Override
+    public void onAuthenticated(FingerprintManager.CryptoObject cryptoObject) {
+        onAuthenticated_Encryption(cryptoObject);
+//        onAuthenticated_Signing(cryptoObject);
+    }
+
+    @Override
+    public boolean initialize(Crypto crypto) {
+        try {
+            prepare(crypto);
+            if (ContextCompat.checkSelfPermission(mView.getContext(), Manifest.permission.USE_FINGERPRINT) == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            } else {
+                mView.showMessage("USE_FINGERPRINT Permission not granted");
+                return false;
+            }
+        } catch (OsVersionException e) {
+            mView.showMessage("OsVersionException: " + e.toString());
+            return false;
+        } catch (SensorException e) {
+            mView.showMessage("SensorException: " + e.toString());
+            return false;
+        } catch (NoEnrolledScreenLockException e) {
+            mView.showMessage("NoEnrolledScreenLockException: " + e.toString());
+            mView.showSecuritySettings();
+            return false;
+        } catch (NoEnrolledFingerprintException e) {
+            mView.showMessage("NoEnrolledFingerprintException: " + e.toString());
+            mView.showSecuritySettings();
+            return false;
+        } catch (FingerprintChangedException e) {
+            mView.showMessage("FingerprintChangedException: " + e.toString());
+            return false;
+        }
+    }
+
+    @Override
+    public void startAuth() {
+        super.startAuth();
+    }
+
+    @Override
+    public void stopAuth() {
+        super.stopAuth();
+    }
 
     private static String temp;
-    private void prepare_Encryption() {
-        RsaEncryption crypto = new RsaEncryption(MockServer.KEY_NAME);
+
+    private void init_Encryption() {
+        RsaEncryption crypto = new RsaEncryption(KEY_NAME);
 
         // Register from after-login-more-touchid-register, and receive the token from server
         String onDeviceAuthToken = MockServer.register();
-        Log.d("####", "prepare_Encryption.onDeviceAuthToken=" + onDeviceAuthToken);
+        Log.d("####", "init_Encryption.onDeviceAuthToken=" + onDeviceAuthToken);
         // Create asymmetric-keypair
         crypto.createKeyPair();
 
@@ -95,15 +106,15 @@ public class FingerprintAuthenticationPresenter
         String encryptedOnDeviceAuthToken = crypto.encrypt(onDeviceAuthToken.getBytes());
         // Save the encrypted onDeviceAuthToken on device
         temp = encryptedOnDeviceAuthToken;
-        Log.d("####", "prepare_Encryption.encryptedOnDeviceAuthToken=" + encryptedOnDeviceAuthToken);
+        Log.d("####", "init_Encryption.encryptedOnDeviceAuthToken=" + encryptedOnDeviceAuthToken);
     }
 
-    private void prepare_Signing() {
-        RsaSigning crypto = new RsaSigning(MockServer.KEY_NAME);
+    private void init_Signing() {
+        RsaSigning crypto = new RsaSigning(KEY_NAME);
 
         // Register from after-login-more-touchid-register, and receive the token from server
         String onDeviceAuthToken = MockServer.register();
-        Log.d("####", "startAuth_Signing.onDeviceAuthToken=" + onDeviceAuthToken);
+        Log.d("####", "init_Signing.onDeviceAuthToken=" + onDeviceAuthToken);
         // Create asymmetric-keypair
         KeyPair keyPair = crypto.createKeyPair();
 
@@ -114,39 +125,13 @@ public class FingerprintAuthenticationPresenter
         temp = hashedOnDeviceAuthToken;
     }
 
-    private void startAuth_Encryption() {
-        RsaEncryption crypto = new RsaEncryption(MockServer.KEY_NAME);
-
-        // Start Fingerprint Authentication
-        FingerprintManager.CryptoObject cryptoObject = null;
-        try {
-            cryptoObject = crypto.createCryptoObject();
-        }  catch (FingerprintChangedException e) {
-            mView.showMessage("FingerprintChangedException: " + e.toString());
-        }
-        mFingerprintAuthenticationHandler.startListening(cryptoObject);
-    }
-
-    private void startAuth_Signing() {
-        RsaSigning crypto = new RsaSigning(MockServer.KEY_NAME);
-
-        // Start Fingerprint Authentication
-        FingerprintManager.CryptoObject cryptoObject = null;
-        try {
-            cryptoObject = crypto.createCryptoObject();
-        }  catch (FingerprintChangedException e) {
-            mView.showMessage("FingerprintChangedException: " + e.toString());
-        }
-        mFingerprintAuthenticationHandler.startListening(cryptoObject);
-    }
-
-    private void onAuthenticated_Encryption(FingerprintManager.AuthenticationResult result){
-        RsaEncryption crypto = new RsaEncryption(MockServer.KEY_NAME);
+    private void onAuthenticated_Encryption(FingerprintManager.CryptoObject cryptoObject) {
+        RsaEncryption crypto = new RsaEncryption(KEY_NAME);
 
         // Get the encrypted onDeviceAuthToken on device
         String encryptedOnDeviceAuthToken = temp;
         // Decrypt for onDeviceAuthToken
-        Cipher authenticatedCipher = result.getCryptoObject().getCipher();
+        Cipher authenticatedCipher = cryptoObject.getCipher();
         byte[] onDeviceAuthTokenBytes = crypto.decrypt(authenticatedCipher, encryptedOnDeviceAuthToken);
 
         // Server verify if the onDeviceAuthToken is correct
@@ -154,14 +139,14 @@ public class FingerprintAuthenticationPresenter
         mView.showMessage(String.valueOf(serverVerify));
     }
 
-    private void onAuthenticated_Signing(FingerprintManager.AuthenticationResult result){
-        RsaSigning crypto = new RsaSigning(MockServer.KEY_NAME);
+    private void onAuthenticated_Signing(FingerprintManager.CryptoObject cryptoObject) {
+        RsaSigning crypto = new RsaSigning(KEY_NAME);
 
         // Get the hashed onDeviceAuthToken on device
         String hashedOnDeviceAuthToken = temp;
 
         // Get authenticated Signature, which has been initialized for sign usage in the "Crypto.createCryptoObject()"
-        Signature authenticatedSignature = result.getCryptoObject().getSignature();
+        Signature authenticatedSignature = cryptoObject.getSignature();
         // Signature bytes from hashed onDeviceAuthToken
         byte[] signatureBytes = crypto.sign(authenticatedSignature, hashedOnDeviceAuthToken.getBytes());
 

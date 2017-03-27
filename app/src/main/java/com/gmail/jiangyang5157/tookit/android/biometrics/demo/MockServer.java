@@ -11,8 +11,6 @@ import java.security.SignatureException;
  */
 public class MockServer {
 
-    public static final String KEY_NAME = "KEY_NAME";
-
     private static String token;
 
     private static PublicKey publicKey;
