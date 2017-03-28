@@ -1,1 +1,1 @@
-include ':app', ':math', ':algorithm', ':android-sql', ':android-base', ':base'
+include ':math', ':base', ':app', 'android-biometrics', ':algorithm', ':android-sql', ':android-base'
