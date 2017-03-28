@@ -36,8 +36,8 @@ public class FingerprintAuthPresenter extends FingerprintAuthenticationPresenter
         super(view.getContext());
         mView = view;
 
-        init_Encryption();
-//        init_Signing();
+        register_Encryption();
+//        register_Signing();
     }
 
     @Override
@@ -93,28 +93,28 @@ public class FingerprintAuthPresenter extends FingerprintAuthenticationPresenter
 
     private static String temp;
 
-    private void init_Encryption() {
+    private void register_Encryption() {
         RsaEncryption crypto = new RsaEncryption(KEY_NAME);
 
         // Register from after-login-more-touchid-register, and receive the token from server
         String onDeviceAuthToken = MockServer.register();
-        Log.d("####", "init_Encryption.onDeviceAuthToken=" + onDeviceAuthToken);
+        Log.d("####", "register_Encryption.onDeviceAuthToken=" + onDeviceAuthToken);
         // Create asymmetric-keypair
         crypto.createKeyPair();
 
         // Encrypt onDeviceAuthToken
         String encryptedOnDeviceAuthToken = crypto.encrypt(onDeviceAuthToken.getBytes());
+        Log.d("####", "register_Encryption.encryptedOnDeviceAuthToken=" + encryptedOnDeviceAuthToken);
         // Save the encrypted onDeviceAuthToken on device
         temp = encryptedOnDeviceAuthToken;
-        Log.d("####", "init_Encryption.encryptedOnDeviceAuthToken=" + encryptedOnDeviceAuthToken);
     }
 
-    private void init_Signing() {
+    private void register_Signing() {
         RsaSigning crypto = new RsaSigning(KEY_NAME);
 
         // Register from after-login-more-touchid-register, and receive the token from server
         String onDeviceAuthToken = MockServer.register();
-        Log.d("####", "init_Signing.onDeviceAuthToken=" + onDeviceAuthToken);
+        Log.d("####", "register_Signing.onDeviceAuthToken=" + onDeviceAuthToken);
         // Create asymmetric-keypair
         KeyPair keyPair = crypto.createKeyPair();
 
