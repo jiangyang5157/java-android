@@ -16,6 +16,7 @@ import java.security.KeyStore;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.security.Signature;
 import java.security.cert.CertificateException;
 
@@ -86,6 +87,23 @@ public class RsaSigning extends Signing {
                 | CertificateException
                 | NoSuchAlgorithmException
                 | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Use Public for verify
+     */
+    @Override
+    public Signature providesVerifySignature() {
+        Signature signature = providesSignature();
+        KeyStore keyStore = providesKeystore();
+        try {
+            keyStore.load(null);
+            PublicKey key = providesPublicKey(keyStore);
+            signature.initVerify(key);
+            return signature;
+        } catch (InvalidKeyException | CertificateException | NoSuchAlgorithmException | IOException e) {
             throw new RuntimeException(e);
         }
     }

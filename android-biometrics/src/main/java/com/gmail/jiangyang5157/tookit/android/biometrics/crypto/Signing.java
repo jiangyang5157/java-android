@@ -5,8 +5,6 @@ import android.support.annotation.NonNull;
 
 import com.gmail.jiangyang5157.tookit.android.biometrics.error.FingerprintChangedException;
 
-import java.security.InvalidKeyException;
-import java.security.PublicKey;
 import java.security.Signature;
 import java.security.SignatureException;
 
@@ -45,21 +43,25 @@ abstract class Signing extends Crypto {
         return sign(providesSigningSignature(), raw);
     }
 
-    public boolean verify(Signature signature, byte[] signtureBytes, PublicKey publicKey, byte[] raw) {
-        if (signature == null) {
+    public boolean verify(Signature signature, byte[] signatureBytes, byte[] raw) {
+        if (raw == null) {
             return false;
         }
         try {
-            signature.initVerify(publicKey);
             signature.update(raw);
-            return signature.verify(signtureBytes);
-        } catch (InvalidKeyException
-                | SignatureException e) {
-            throw new RuntimeException(e);
+            return signature.verify(signatureBytes);
+        } catch (SignatureException e) {
+            throw new RuntimeException("Failed to do verify", e);
         }
+    }
+
+    public byte[] verify(byte[] signatureBytes, byte[] raw) {
+        return sign(providesVerifySignature(), raw);
     }
 
     public abstract Signature providesSignature();
 
     public abstract Signature providesSigningSignature() throws FingerprintChangedException;
+
+    public abstract Signature providesVerifySignature();
 }
