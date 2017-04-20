@@ -42,7 +42,6 @@ public abstract class BaseAppDatabaseApi {
 
     protected BaseAppDatabaseApi(Context context) {
         dbOpenHelper = getAppDatabaseOpenHelper(context);
-        open();// I'm not close it at all, is it a problem?
     }
 
     /**
