@@ -42,9 +42,12 @@ public class RsaSigning extends Signing {
         /*
          It requires that the user authenticate with a registered fingerprint to authorize every use of the private key.
          It throw "android.security.KeyStoreException: Key user not authenticated" when private key be used without fingerprint auth.
-         E: http://stackoverflow.com/questions/36043912/error-after-fingerprint-touched-on-samsung-phones-android-security-keystoreexce
          */
         builder.setUserAuthenticationRequired(true);
+        /*
+         Samsung KeyStoreException:
+         http://stackoverflow.com/questions/36043912/error-after-fingerprint-touched-on-samsung-phones-android-security-keystoreexce
+         */
 
         KeyPairGenerator keyPairGenerator;
         try {
@@ -91,9 +94,6 @@ public class RsaSigning extends Signing {
         }
     }
 
-    /**
-     * Use Public for verify
-     */
     @Override
     public Signature providesVerifySignature() {
         Signature signature = providesSignature();
@@ -103,9 +103,11 @@ public class RsaSigning extends Signing {
             PublicKey key = providesPublicKey(keyStore);
             signature.initVerify(key);
             return signature;
-        } catch (InvalidKeyException | CertificateException | NoSuchAlgorithmException | IOException e) {
+        } catch (InvalidKeyException
+                | CertificateException
+                | NoSuchAlgorithmException
+                | IOException e) {
             throw new RuntimeException(e);
         }
     }
 }
-

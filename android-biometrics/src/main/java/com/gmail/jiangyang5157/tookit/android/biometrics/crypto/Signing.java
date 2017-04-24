@@ -43,20 +43,20 @@ abstract class Signing extends Crypto {
         return sign(providesSigningSignature(), raw);
     }
 
-    public boolean verify(Signature signature, byte[] signatureBytes, byte[] raw) {
+    public boolean verify(Signature signature, byte[] signtureBytes, byte[] raw) {
         if (raw == null) {
             return false;
         }
         try {
             signature.update(raw);
-            return signature.verify(signatureBytes);
+            return signature.verify(signtureBytes);
         } catch (SignatureException e) {
             throw new RuntimeException("Failed to do verify", e);
         }
     }
 
-    public byte[] verify(byte[] signatureBytes, byte[] raw) {
-        return sign(providesVerifySignature(), raw);
+    public boolean verify(byte[] signtureBytes, byte[] raw) {
+        return verify(providesVerifySignature(), signtureBytes, raw);
     }
 
     public abstract Signature providesSignature();

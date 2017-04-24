@@ -79,6 +79,19 @@ public abstract class Crypto {
         }
     }
 
+    public void deleteKeyPair() {
+        KeyStore keyStore = providesKeystore();
+        try {
+            keyStore.load(null);
+            keyStore.deleteEntry(mKeyName);
+        } catch (KeyStoreException
+                | CertificateException
+                | IOException
+                | NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public abstract KeyPair createKeyPair();
 
     public abstract FingerprintManager.CryptoObject createCryptoObject() throws FingerprintChangedException;
