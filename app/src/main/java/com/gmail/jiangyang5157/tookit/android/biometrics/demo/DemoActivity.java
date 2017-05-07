@@ -34,9 +34,7 @@ public class DemoActivity extends AppCompatActivity implements FingerprintAuthCo
     private View.OnClickListener btnStartOnClickListener = new Button.OnClickListener() {
         @Override
         public void onClick(View view) {
-            boolean ready = mFingerprintAuthenticationPresenter.initialize(new RsaEncryption(FingerprintAuthPresenter.KEY_NAME));
-//            boolean ready = mFingerprintAuthenticationPresenter.initialize(new RsaSigning(FingerprintAuthPresenter.KEY_NAME));
-            if (ready) {
+            if (mFingerprintAuthenticationPresenter.prepare()) {
                 mFingerprintAuthenticationPresenter.startAuth();
             }
         }
@@ -53,12 +51,6 @@ public class DemoActivity extends AppCompatActivity implements FingerprintAuthCo
     protected void onStop() {
         super.onStop();
         mFingerprintAuthenticationPresenter.stopAuth();
-    }
-
-    @Override
-    public void showSecuritySettings() {
-        Intent intent = new Intent(Settings.ACTION_SECURITY_SETTINGS);
-        startActivityForResult(intent, REQUEST_CODE_SECURITY_SETTINGS);
     }
 
     public static final int REQUEST_CODE_SECURITY_SETTINGS = 100;

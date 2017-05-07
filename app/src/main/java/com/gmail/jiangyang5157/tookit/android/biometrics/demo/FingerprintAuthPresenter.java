@@ -1,22 +1,16 @@
 package com.gmail.jiangyang5157.tookit.android.biometrics.demo;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
-import com.gmail.jiangyang5157.tookit.android.biometrics.FingerprintAuthenticationPresenter;
+import com.gmail.jiangyang5157.tookit.android.biometrics.controller.FingerprintAuthenticationDelegate;
 import com.gmail.jiangyang5157.tookit.android.biometrics.crypto.Crypto;
 import com.gmail.jiangyang5157.tookit.android.biometrics.crypto.RsaEncryption;
 import com.gmail.jiangyang5157.tookit.android.biometrics.crypto.RsaSigning;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.BiometricsException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.FingerprintChangedException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.NoEnrolledFingerprintException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.NoEnrolledScreenLockException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.OsVersionException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.SensorException;
+import com.gmail.jiangyang5157.tookit.android.biometrics.error.FingerprintAuthenticationCancelledException;
+import com.gmail.jiangyang5157.tookit.android.biometrics.error.FingerprintAuthenticationFailedException;
+import com.gmail.jiangyang5157.tookit.android.biometrics.error.FingerprintAuthenticationHelpException;
 
 import java.security.KeyPair;
 import java.security.Signature;
@@ -26,7 +20,8 @@ import javax.crypto.Cipher;
 /**
  * Created by yangjiang on 24/03/17.
  */
-public class FingerprintAuthPresenter extends FingerprintAuthenticationPresenter implements FingerprintAuthContract.Presenter {
+public class FingerprintAuthPresenter extends FingerprintAuthenticationDelegate
+        implements FingerprintAuthContract.Presenter {
 
     public static final String KEY_NAME = "KEY_NAME";
 
@@ -41,58 +36,12 @@ public class FingerprintAuthPresenter extends FingerprintAuthenticationPresenter
     }
 
     @Override
-    public void onAuthentication(BiometricsException e) {
-        mView.showMessage(e.toString());
-    }
-
-    @Override
-    public void onAuthenticated(FingerprintManager.CryptoObject cryptoObject) {
-        onAuthenticated_Encryption(cryptoObject);
-//        onAuthenticated_Signing(cryptoObject);
-    }
-
-    @Override
-    public boolean initialize(Crypto crypto) {
-        try {
-            prepare(crypto);
-            if (ContextCompat.checkSelfPermission(mView.getContext(), Manifest.permission.USE_FINGERPRINT) == PackageManager.PERMISSION_GRANTED) {
-                return true;
-            } else {
-                mView.showMessage("USE_FINGERPRINT Permission not granted");
-                return false;
-            }
-        } catch (OsVersionException e) {
-            mView.showMessage("OsVersionException: " + e.toString());
-            return false;
-        } catch (SensorException e) {
-            mView.showMessage("SensorException: " + e.toString());
-            return false;
-        } catch (NoEnrolledScreenLockException e) {
-            mView.showMessage("NoEnrolledScreenLockException: " + e.toString());
-            mView.showSecuritySettings();
-            return false;
-        } catch (NoEnrolledFingerprintException e) {
-            mView.showMessage("NoEnrolledFingerprintException: " + e.toString());
-            mView.showSecuritySettings();
-            return false;
-        } catch (FingerprintChangedException e) {
-            mView.showMessage("FingerprintChangedException: " + e.toString());
-            return false;
-        }
-    }
-
-    @Override
-    public void startAuth() {
-        super.startAuth();
-    }
-
-    @Override
-    public void stopAuth() {
-        super.stopAuth();
+    protected Crypto providesCrypto() {
+        return new RsaEncryption(KEY_NAME);
+//        return new RsaSigning(KEY_NAME);
     }
 
     private static String temp;
-
     private void register_Encryption() {
         RsaEncryption crypto = new RsaEncryption(KEY_NAME);
 
@@ -156,5 +105,58 @@ public class FingerprintAuthPresenter extends FingerprintAuthenticationPresenter
         // Server verify the hashed onDeviceAuthToken signatureBytes
         boolean serverVerify = MockServer.verifyHashedToken(newSignatureInstance, signatureBytes);
         mView.showMessage(String.valueOf(serverVerify));
+    }
+
+    @Override
+    public void onAuthenticated(FingerprintManager.AuthenticationResult result) {
+        onAuthenticated_Encryption(result.getCryptoObject());
+//        onAuthenticated_Signing(result.getCryptoObject());
+    }
+
+    @Override
+    public void onAuthenticationException(FingerprintAuthenticationCancelledException e) {
+        mView.showMessage(e.toString());
+
+    }
+
+    @Override
+    public void onAuthenticationException(FingerprintAuthenticationHelpException e) {
+        mView.showMessage(e.toString());
+
+    }
+
+    @Override
+    public void onAuthenticationException(FingerprintAuthenticationFailedException e) {
+        mView.showMessage(e.toString());
+    }
+
+    @Override
+    protected void handleOsVersionException() {
+        mView.showMessage("handleOsVersionException");
+    }
+
+    @Override
+    protected void handleSensorException() {
+        mView.showMessage("handleSensorException");
+    }
+
+    @Override
+    protected void handleNoPermissionGrantedException() {
+        mView.showMessage("handleNoPermissionGrantedException");
+    }
+
+    @Override
+    protected void handleNoEnrolledFingerprintException() {
+        mView.showMessage("handleNoEnrolledFingerprintException");
+    }
+
+    @Override
+    protected void handleNoEnrolledScreenLockException() {
+        mView.showMessage("handleNoEnrolledScreenLockException");
+    }
+
+    @Override
+    protected void handleFingerprintChangedException() {
+        mView.showMessage("handleFingerprintChangedException");
     }
 }
