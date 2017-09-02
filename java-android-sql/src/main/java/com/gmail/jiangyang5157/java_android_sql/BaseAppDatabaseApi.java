@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.tookit.android.sql;
+package com.gmail.jiangyang5157.java_android_sql;
 
 import android.content.ContentValues;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.tookit.android.sql;
+package com.gmail.jiangyang5157.java_android_sql;
 
 /**
  * @author Yang 9/16/2015.
