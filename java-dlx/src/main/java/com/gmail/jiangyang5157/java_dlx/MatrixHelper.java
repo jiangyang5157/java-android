@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.tookit.algorithm.dlx;
+package com.gmail.jiangyang5157.java_dlx;
 
 import java.util.ArrayList;
 
