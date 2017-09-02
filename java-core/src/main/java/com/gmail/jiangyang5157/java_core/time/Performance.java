@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.tookit.base.time;
+package com.gmail.jiangyang5157.java_core.time;
 
 import java.util.ArrayList;
 import java.util.Random;

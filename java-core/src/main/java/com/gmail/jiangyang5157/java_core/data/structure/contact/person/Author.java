@@ -1,8 +1,8 @@
-package com.gmail.jiangyang5157.tookit.base.data.structure.contact.person;
+package com.gmail.jiangyang5157.java_core.data.structure.contact.person;
 
-import com.gmail.jiangyang5157.tookit.base.data.structure.contact.Contactable;
-import com.gmail.jiangyang5157.tookit.base.data.structure.contact.EmailAddress;
-import com.gmail.jiangyang5157.tookit.base.data.structure.contact.Type;
+import com.gmail.jiangyang5157.java_core.data.structure.contact.Contactable;
+import com.gmail.jiangyang5157.java_core.data.structure.contact.EmailAddress;
+import com.gmail.jiangyang5157.java_core.data.structure.contact.Type;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.tookit.base.parser;
+package com.gmail.jiangyang5157.java_core.parser;
 import java.util.HashMap;
 
 /**

@@ -1,6 +1,6 @@
 include ':app',
+        ':java-core',
         ':java-math',
-        ':java-base',
         ':java-dlx',
         ':java-android-base',
         ':java-android-sql',

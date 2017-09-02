@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.tookit.base.data;
+package com.gmail.jiangyang5157.java_core.data;
 
 import java.util.Arrays;
 
