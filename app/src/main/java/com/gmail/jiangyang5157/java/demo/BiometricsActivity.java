@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.gmail.jiangyang5157.java.R;
 
-public class DemoActivity extends AppCompatActivity implements FingerprintAuthContract.View {
+public class BiometricsActivity extends AppCompatActivity implements FingerprintAuthContract.View {
 
     private TextView tvMessage;
 

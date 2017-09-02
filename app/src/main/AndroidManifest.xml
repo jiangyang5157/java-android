@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".java.demo.DemoActivity" />
+        <activity android:name="demo.BiometricsActivity" />
     </application>
 
 </manifest>

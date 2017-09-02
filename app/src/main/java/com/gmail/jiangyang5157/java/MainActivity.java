@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.gmail.jiangyang5157.java.demo.DemoActivity;
+import com.gmail.jiangyang5157.java.demo.BiometricsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,
-                        DemoActivity.class));
+                        BiometricsActivity.class));
             }
         });
     }
