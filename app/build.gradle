@@ -2,15 +2,18 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
 
     defaultConfig {
         applicationId "com.gmail.jiangyang5157.tookit"
-        minSdkVersion 23
+        minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -20,8 +23,14 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.3.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation ('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    implementation "com.android.support:appcompat-v7:$appcompat_v7_version"
+
     compile project(path: ':android-biometrics')
 }

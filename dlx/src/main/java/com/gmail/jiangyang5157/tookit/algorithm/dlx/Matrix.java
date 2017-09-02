@@ -3,7 +3,7 @@ package com.gmail.jiangyang5157.tookit.algorithm.dlx;
 import java.util.ArrayList;
 
 /**
- * see more efficient golang implementation: https://github.com/jiangyang5157/go-dlx
+ * see more efficient Go implementation: https://github.com/jiangyang5157/go-dlx/blob/master/dlx/dlx.go
  * @author Yang
  */
 @Deprecated
@@ -19,11 +19,11 @@ public class Matrix {
     /**
      * @param head The head node of the toroidal doubly-linked list
      */
-    protected Matrix(HeadNode head) {
+    Matrix(HeadNode head) {
         this.head = head;
 
-        cache = new ArrayList<Node>();
-        results = new ArrayList<int[]>();
+        cache = new ArrayList<>();
+        results = new ArrayList<>();
     }
 
     /**
@@ -31,7 +31,7 @@ public class Matrix {
      *
      * @param column A given column node
      */
-    public void cover(Node column) {
+    private void cover(Node column) {
         column.getRight().setLeft(column.getLeft());
         column.getLeft().setRight(column.getRight());
 
@@ -50,7 +50,7 @@ public class Matrix {
      *
      * @param column A given column node
      */
-    public void uncover(Node column) {
+    private void uncover(Node column) {
         for (Node rowNode = column.getUp(); rowNode != column; rowNode = rowNode
                 .getUp()) {
             for (Node leftNode = rowNode.getLeft(); leftNode != rowNode; leftNode = leftNode

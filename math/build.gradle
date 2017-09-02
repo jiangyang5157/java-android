@@ -1,5 +1,20 @@
-apply plugin: 'java'
+apply plugin: 'java-library'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testCompile "junit:junit:$junit_version"
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+repositories {
+    mavenCentral()
 }
