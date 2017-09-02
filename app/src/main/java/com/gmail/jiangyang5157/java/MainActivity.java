@@ -1,10 +1,12 @@
-package com.gmail.jiangyang5157.tookit;
+package com.gmail.jiangyang5157.java;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.gmail.jiangyang5157.java.demo.DemoActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,
-                        com.gmail.jiangyang5157.tookit.android.biometrics.demo.DemoActivity.class));
+                        DemoActivity.class));
             }
         });
     }

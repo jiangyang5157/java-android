@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.tookit.android.biometrics.demo;
+package com.gmail.jiangyang5157.java.demo;
 
 import java.security.InvalidKeyException;
 import java.security.PublicKey;

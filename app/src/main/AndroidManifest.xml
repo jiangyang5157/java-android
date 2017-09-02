@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gmail.jiangyang5157.tookit">
+    package="com.gmail.jiangyang5157.java">
 
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".android.biometrics.demo.DemoActivity" />
+        <activity android:name=".java.demo.DemoActivity" />
     </application>
 
 </manifest>

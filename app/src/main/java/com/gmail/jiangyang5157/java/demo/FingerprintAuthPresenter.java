@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.tookit.android.biometrics.demo;
+package com.gmail.jiangyang5157.java.demo;
 
 import android.hardware.fingerprint.FingerprintManager;
 import android.support.annotation.NonNull;
