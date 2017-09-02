@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion android_compile_sdk_version
+    buildToolsVersion android_build_tools_version
 
     defaultConfig {
+        minSdkVersion android_min_sdk_version
+        targetSdkVersion android_target_sdk_version
         applicationId "com.gmail.jiangyang5157.java"
-        minSdkVersion 21
-        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
 
