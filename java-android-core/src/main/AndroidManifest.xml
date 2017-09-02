@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gmail.jiangyang5157.tookit.android.base">
+    package="com.gmail.jiangyang5157.java_android_core">
 
     <application
         android:allowBackup="true"

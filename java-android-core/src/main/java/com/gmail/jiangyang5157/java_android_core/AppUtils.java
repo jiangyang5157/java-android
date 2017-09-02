@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.tookit.android.base;
+package com.gmail.jiangyang5157.java_android_core;
 
 import android.content.Context;
 import android.content.SharedPreferences;

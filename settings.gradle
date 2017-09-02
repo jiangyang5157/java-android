@@ -2,6 +2,6 @@ include ':app',
         ':java-core',
         ':java-math',
         ':java-dlx',
-        ':java-android-base',
+        ':java-android-core',
         ':java-android-sql',
         ':java-android-biometrics'
