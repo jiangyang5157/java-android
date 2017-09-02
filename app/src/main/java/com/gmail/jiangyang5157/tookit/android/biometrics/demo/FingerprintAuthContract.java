@@ -2,8 +2,6 @@ package com.gmail.jiangyang5157.tookit.android.biometrics.demo;
 
 import android.content.Context;
 
-import com.gmail.jiangyang5157.tookit.android.biometrics.crypto.Crypto;
-
 /**
  * Created by yangjiang on 24/03/17.
  */

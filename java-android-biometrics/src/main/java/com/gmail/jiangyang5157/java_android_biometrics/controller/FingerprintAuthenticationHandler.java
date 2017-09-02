@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.tookit.android.biometrics.controller;
+package com.gmail.jiangyang5157.java_android_biometrics.controller;
 
 import android.Manifest;
 import android.app.KeyguardManager;
@@ -10,14 +10,14 @@ import android.os.CancellationSignal;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.FingerprintAuthenticationCancelledException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.FingerprintAuthenticationFailedException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.FingerprintAuthenticationHelpException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.NoEnrolledFingerprintException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.NoEnrolledScreenLockException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.NoPermissionGrantedException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.OsVersionException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.SensorException;
+import com.gmail.jiangyang5157.java_android_biometrics.error.FingerprintAuthenticationCancelledException;
+import com.gmail.jiangyang5157.java_android_biometrics.error.FingerprintAuthenticationFailedException;
+import com.gmail.jiangyang5157.java_android_biometrics.error.FingerprintAuthenticationHelpException;
+import com.gmail.jiangyang5157.java_android_biometrics.error.NoEnrolledFingerprintException;
+import com.gmail.jiangyang5157.java_android_biometrics.error.NoEnrolledScreenLockException;
+import com.gmail.jiangyang5157.java_android_biometrics.error.NoPermissionGrantedException;
+import com.gmail.jiangyang5157.java_android_biometrics.error.OsVersionException;
+import com.gmail.jiangyang5157.java_android_biometrics.error.SensorException;
 
 /**
  * Created by yangjiang on 24/04/17.

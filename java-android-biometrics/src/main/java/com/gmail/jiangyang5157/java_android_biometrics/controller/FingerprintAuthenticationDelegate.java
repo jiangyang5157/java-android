@@ -1,15 +1,15 @@
-package com.gmail.jiangyang5157.tookit.android.biometrics.controller;
+package com.gmail.jiangyang5157.java_android_biometrics.controller;
 
 import android.content.Context;
 import android.hardware.fingerprint.FingerprintManager;
 
-import com.gmail.jiangyang5157.tookit.android.biometrics.crypto.Crypto;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.FingerprintChangedException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.NoEnrolledFingerprintException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.NoEnrolledScreenLockException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.NoPermissionGrantedException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.OsVersionException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.SensorException;
+import com.gmail.jiangyang5157.java_android_biometrics.crypto.Crypto;
+import com.gmail.jiangyang5157.java_android_biometrics.error.FingerprintChangedException;
+import com.gmail.jiangyang5157.java_android_biometrics.error.NoEnrolledFingerprintException;
+import com.gmail.jiangyang5157.java_android_biometrics.error.NoEnrolledScreenLockException;
+import com.gmail.jiangyang5157.java_android_biometrics.error.NoPermissionGrantedException;
+import com.gmail.jiangyang5157.java_android_biometrics.error.OsVersionException;
+import com.gmail.jiangyang5157.java_android_biometrics.error.SensorException;
 
 /**
  * Created by yangjiang on 24/04/17.

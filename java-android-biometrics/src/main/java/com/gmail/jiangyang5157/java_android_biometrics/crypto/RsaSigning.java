@@ -1,11 +1,11 @@
-package com.gmail.jiangyang5157.tookit.android.biometrics.crypto;
+package com.gmail.jiangyang5157.java_android_biometrics.crypto;
 
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
 import android.support.annotation.NonNull;
 
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.FingerprintChangedException;
+import com.gmail.jiangyang5157.java_android_biometrics.error.FingerprintChangedException;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;

@@ -4,13 +4,13 @@ import android.hardware.fingerprint.FingerprintManager;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.gmail.jiangyang5157.tookit.android.biometrics.controller.FingerprintAuthenticationDelegate;
-import com.gmail.jiangyang5157.tookit.android.biometrics.crypto.Crypto;
-import com.gmail.jiangyang5157.tookit.android.biometrics.crypto.RsaEncryption;
-import com.gmail.jiangyang5157.tookit.android.biometrics.crypto.RsaSigning;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.FingerprintAuthenticationCancelledException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.FingerprintAuthenticationFailedException;
-import com.gmail.jiangyang5157.tookit.android.biometrics.error.FingerprintAuthenticationHelpException;
+import com.gmail.jiangyang5157.java_android_biometrics.controller.FingerprintAuthenticationDelegate;
+import com.gmail.jiangyang5157.java_android_biometrics.crypto.Crypto;
+import com.gmail.jiangyang5157.java_android_biometrics.crypto.RsaEncryption;
+import com.gmail.jiangyang5157.java_android_biometrics.crypto.RsaSigning;
+import com.gmail.jiangyang5157.java_android_biometrics.error.FingerprintAuthenticationCancelledException;
+import com.gmail.jiangyang5157.java_android_biometrics.error.FingerprintAuthenticationFailedException;
+import com.gmail.jiangyang5157.java_android_biometrics.error.FingerprintAuthenticationHelpException;
 
 import java.security.KeyPair;
 import java.security.Signature;
