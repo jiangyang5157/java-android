@@ -1,1 +1,7 @@
-include ':math', ':base', ':app', 'android-biometrics', ':dlx', ':android-sql', ':android-base'
+include ':app',
+        ':java-math',
+        ':java-base',
+        ':java-dlx',
+        ':java-android-base',
+        ':java-android-sql',
+        ':java-android-biometrics'

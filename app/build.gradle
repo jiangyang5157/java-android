@@ -32,5 +32,5 @@ dependencies {
 
     implementation "com.android.support:appcompat-v7:$appcompat_v7_version"
 
-    compile project(path: ':android-biometrics')
+    compile project(path: ':java-android-biometrics')
 }
