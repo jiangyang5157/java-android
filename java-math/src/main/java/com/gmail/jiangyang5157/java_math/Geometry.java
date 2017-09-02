@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.tookit.math;
+package com.gmail.jiangyang5157.java_math;
 
 /**
  * @author Yang 4/9/2016.
