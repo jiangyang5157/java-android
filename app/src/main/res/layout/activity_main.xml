@@ -19,6 +19,6 @@
         android:id="@+id/btn_android_biometrics_demo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="android.biometrics.demo"/>
+        android:text="java-android.biometrics"/>
 
 </LinearLayout>
