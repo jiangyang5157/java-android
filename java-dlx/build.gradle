@@ -6,8 +6,8 @@ dependencies {
     testCompile "junit:junit:$junit_version"
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+sourceCompatibility = java_compatibility
+targetCompatibility = java_compatibility
 
 buildscript {
     repositories {
