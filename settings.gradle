@@ -4,5 +4,4 @@ include ':app',
         ':java-dlx',
         ':java-android-core',
         ':java-android-sql',
-        ':java-android-rest',
         ':java-android-biometrics'
