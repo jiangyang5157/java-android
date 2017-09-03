@@ -17,7 +17,7 @@ buildscript {
 
     ext.espresso_core_version = '2.2.2'
 
-    ext.java_compatibility = "1.7"
+    ext.java_compatibility = "1.8"
 
     repositories {
         google()
