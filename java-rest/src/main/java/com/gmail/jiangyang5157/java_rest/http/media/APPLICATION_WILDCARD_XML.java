@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@HttpMedia(HttpMedia.APPLICATION_ALL_XML)
+@HttpMedia(HttpMedia.APPLICATION_WILDCARD_XML)
 @Documented
-public @interface APPLICATION_ALL_XML {
+public @interface APPLICATION_WILDCARD_XML {
 }

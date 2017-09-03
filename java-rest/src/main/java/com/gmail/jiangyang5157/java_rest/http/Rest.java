@@ -28,10 +28,10 @@ public @interface Rest {
     /**
      * @return the interceptor class to do extra processing before or after request
      */
-    Class<?> interceptor();
+    Class<?> interceptor() default Void.class;
 
     /**
      * @return the error handler class to handle errors
      */
-    Class<?> errorHandler();
+    Class<?> errorHandler() default Void.class;
 }

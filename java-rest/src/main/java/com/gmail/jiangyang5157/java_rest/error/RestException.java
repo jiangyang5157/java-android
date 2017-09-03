@@ -5,4 +5,5 @@ package com.gmail.jiangyang5157.java_rest.error;
  */
 
 public class RestException extends Exception {
+    // TODO: 3/09/17
 }

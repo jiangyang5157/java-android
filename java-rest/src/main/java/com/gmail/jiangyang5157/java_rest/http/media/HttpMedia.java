@@ -19,7 +19,7 @@ public @interface HttpMedia {
 
     public static final String APPLICATION_JSON = "application/json";
     public static final String APPLICATION_XML = "application/xml";
-    public static final String APPLICATION_ALL_XML = "application/*+xml";
+    public static final String APPLICATION_WILDCARD_XML = "application/*+xml";
     public static final String APPLICATION_ATOM_XML = "application/atom+xml";
     public static final String APPLICATION_RSS_XML = "application/rss+xml";
     public static final String APPLICATION_XHTML_XML = "application/xhtml+xml";
