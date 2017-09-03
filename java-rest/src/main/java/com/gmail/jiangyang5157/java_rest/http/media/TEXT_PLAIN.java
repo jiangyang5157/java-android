@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.java_rest.http;
+package com.gmail.jiangyang5157.java_rest.http.media;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@HttpMethod(HttpMethod.PATCH)
+@HttpMedia(HttpMedia.TEXT_PLAIN)
 @Documented
-public @interface PATCH {
+public @interface TEXT_PLAIN {
 }

@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.java_rest.http;
+package com.gmail.jiangyang5157.java_rest.http.method;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
