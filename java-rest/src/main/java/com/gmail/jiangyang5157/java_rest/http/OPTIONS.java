@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@HttpMethod(HttpMethod.PATCH)
+@HttpMethod(HttpMethod.OPTIONS)
 @Documented
-public @interface Patch {
+public @interface OPTIONS {
 }

@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@HttpMethod(HttpMethod.GET)
+@HttpMethod(HttpMethod.POST)
 @Documented
-public @interface Get {
+public @interface POST {
 }

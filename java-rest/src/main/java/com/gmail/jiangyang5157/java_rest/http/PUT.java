@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@HttpMethod(HttpMethod.HEAD)
+@HttpMethod(HttpMethod.PUT)
 @Documented
-public @interface Head {
+public @interface PUT {
 }
