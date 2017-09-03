@@ -10,9 +10,9 @@ import java.lang.annotation.Target;
  * Created by Yang Jiang on September 03, 2017
  */
 
-@Target({ElementType.METHOD})
+@Target({ElementType.METHOD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-@HttpMethod(HttpMethod.DELETE)
 @Documented
-public @interface DELETE {
+public @interface Path {
+    String value();
 }
