@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.java_rest.http.method;
+package com.gmail.jiangyang5157.java_rest.http;
 
 /**
  * Created by Yang Jiang on September 03, 2017
@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@HttpMethod(HttpMethod.GET)
+@HttpMethod(HttpMethod.HEAD)
 @Documented
-public @interface Get {
+public @interface Head {
 }

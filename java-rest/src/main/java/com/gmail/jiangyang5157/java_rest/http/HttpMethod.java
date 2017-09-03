@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.java_rest.http.method;
+package com.gmail.jiangyang5157.java_rest.http;
 
 /**
  * Created by Yang Jiang on September 03, 2017
