@@ -15,24 +15,24 @@ import java.lang.annotation.Target;
 @Documented
 public @interface HttpMedia {
 
-    public static final String ALL = "*/*";
+    String ALL = "*/*";
 
-    public static final String APPLICATION_JSON = "application/json";
-    public static final String APPLICATION_XML = "application/xml";
-    public static final String APPLICATION_WILDCARD_XML = "application/*+xml";
-    public static final String APPLICATION_ATOM_XML = "application/atom+xml";
-    public static final String APPLICATION_RSS_XML = "application/rss+xml";
-    public static final String APPLICATION_XHTML_XML = "application/xhtml+xml";
-    public static final String APPLICATION_OCTET_STREAM = "application/octet-stream";
-    public static final String APPLICATION_X_WWW_FORM_URLENCODED = "application/x-www-form-urlencoded";
+    String APPLICATION_JSON = "application/json";
+    String APPLICATION_XML = "application/xml";
+    String APPLICATION_WILDCARD_XML = "application/*+xml";
+    String APPLICATION_ATOM_XML = "application/atom+xml";
+    String APPLICATION_RSS_XML = "application/rss+xml";
+    String APPLICATION_XHTML_XML = "application/xhtml+xml";
+    String APPLICATION_OCTET_STREAM = "application/octet-stream";
+    String APPLICATION_X_WWW_FORM_URLENCODED = "application/x-www-form-urlencoded";
 
-    public static final String IMAGE_JPEG = "image/jpeg";
-    public static final String IMAGE_PNG = "image/png";
-    public static final String IMAGE_GIF = "image/gif";
+    String IMAGE_JPEG = "image/jpeg";
+    String IMAGE_PNG = "image/png";
+    String IMAGE_GIF = "image/gif";
 
-    public static final String TEXT_PLAIN = "text/plain";
-    public static final String TEXT_XML = "text/xml";
-    public static final String TEXT_HTML = "text/html";
+    String TEXT_PLAIN = "text/plain";
+    String TEXT_XML = "text/xml";
+    String TEXT_HTML = "text/html";
 
     String value();
 }

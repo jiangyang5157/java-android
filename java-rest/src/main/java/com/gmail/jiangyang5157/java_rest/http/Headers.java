@@ -13,12 +13,12 @@ import java.lang.annotation.Target;
 /**
  * eg:
  *
- * @GET("/") Call<ResponseBody> foo(@Header("Accept-Language") String acceptLang);
+ * @Headers({ "X-Foo: Bar", "X-Ping: Pong"})
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.PARAMETER})
-public @interface Header {
+@Target({ElementType.METHOD})
+public @interface Headers {
 
-    String value();
+    String[] value();
 }

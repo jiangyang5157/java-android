@@ -4,6 +4,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     testImplementation "junit:junit:$junit_version"
+
+    compile "com.squareup.okhttp3:okhttp:$okhttp_version"
 }
 
 sourceCompatibility = java_compatibility

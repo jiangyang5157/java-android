@@ -10,15 +10,8 @@ import java.lang.annotation.Target;
  * Created by Yang Jiang on September 03, 2017
  */
 
-/**
- * eg:
- *
- * @GET("/") Call<ResponseBody> foo(@Header("Accept-Language") String acceptLang);
- */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.PARAMETER})
-public @interface Header {
-
-    String value();
+public @interface Body {
 }

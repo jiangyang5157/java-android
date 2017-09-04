@@ -10,9 +10,19 @@ import java.lang.annotation.Target;
  * Created by Yang Jiang on September 03, 2017
  */
 
-@Target({ElementType.METHOD, ElementType.PARAMETER})
-@Retention(RetentionPolicy.RUNTIME)
+/**
+ * eg:
+ *
+ * @GET("/image/{id}") Call<ResponseBody> example(@Path("id") int id);
+ * <p>
+ * @GET("/user/{name}") Call<ResponseBody> notEncoded(@Path(value="name", encoded=true) String name);
+ */
 @Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.PARAMETER})
 public @interface Path {
+
     String value();
+
+    boolean encoded() default false;
 }

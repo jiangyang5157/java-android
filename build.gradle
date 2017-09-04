@@ -17,6 +17,8 @@ buildscript {
 
     ext.espresso_core_version = '2.2.2'
 
+    ext.okhttp_version = "3.3.1"
+
     ext.java_compatibility = "1.8"
 
     repositories {
