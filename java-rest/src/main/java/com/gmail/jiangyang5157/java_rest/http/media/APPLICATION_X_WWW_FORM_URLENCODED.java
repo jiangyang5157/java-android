@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@HttpMedia(HttpMedia.APPLICATION_X_WWW_FORM_URLENCODED)
+@MediaType(MediaType.APPLICATION_X_WWW_FORM_URLENCODED)
 @Documented
 public @interface APPLICATION_X_WWW_FORM_URLENCODED {
 }

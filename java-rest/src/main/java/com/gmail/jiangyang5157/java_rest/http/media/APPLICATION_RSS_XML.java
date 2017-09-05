@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@HttpMedia(HttpMedia.APPLICATION_RSS_XML)
+@MediaType(MediaType.APPLICATION_RSS_XML)
 @Documented
 public @interface APPLICATION_RSS_XML {
 }

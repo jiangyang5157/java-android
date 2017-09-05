@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@HttpMedia(HttpMedia.IMAGE_PNG)
+@MediaType(MediaType.IMAGE_PNG)
 @Documented
 public @interface IMAGE_PNG {
 }

@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@HttpMethod(HttpMethod.DELETE)
+@MethodType(MethodType.DELETE)
 @Documented
 public @interface DELETE {
 }

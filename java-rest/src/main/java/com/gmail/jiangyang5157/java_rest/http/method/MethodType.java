@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface HttpMethod {
+public @interface MethodType {
 
     /**
      * The GET method requests a representation of the specified resource. Requests using GET should only retrieve data.

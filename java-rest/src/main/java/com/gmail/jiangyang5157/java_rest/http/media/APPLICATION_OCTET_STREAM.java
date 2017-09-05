@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@HttpMedia(HttpMedia.APPLICATION_OCTET_STREAM)
+@MediaType(MediaType.APPLICATION_OCTET_STREAM)
 @Documented
 public @interface APPLICATION_OCTET_STREAM {
 }

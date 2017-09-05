@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@HttpMedia(HttpMedia.ALL)
+@MediaType(MediaType.ALL)
 @Documented
 public @interface ALL {
 }

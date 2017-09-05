@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@HttpMedia(HttpMedia.APPLICATION_JSON)
+@MediaType(MediaType.APPLICATION_JSON)
 @Documented
 public @interface APPLICATION_JSON {
 }
