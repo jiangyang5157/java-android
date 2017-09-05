@@ -3,25 +3,24 @@ package com.gmail.jiangyang5157.java_rest.error;
 /**
  * Created by Yang Jiang on September 03, 2017
  */
-public class HttpException extends RuntimeException {
+public class HttpException extends RestException {
 
-    public static final String TAG = "HttpException";
-
-    private final int mCode;
-
-    private final String mMessage;
+    final int mCode;
 
     public HttpException(int code, String message) {
-        super(String.format("%s %s %s", TAG, code, message));
+        super(message);
         this.mCode = code;
-        this.mMessage = message;
     }
 
     public int code() {
         return mCode;
     }
 
-    public String message() {
-        return mMessage;
+    @Override
+    public String toString() {
+        return "HttpException{" +
+                mCode + '\'' +
+                mMessage + '\'' +
+                '}';
     }
 }
