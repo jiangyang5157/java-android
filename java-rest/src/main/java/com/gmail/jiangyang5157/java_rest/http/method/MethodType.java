@@ -59,10 +59,5 @@ public @interface MethodType {
      */
     String DELETE = "DELETE";
 
-    /**
-     * The OPTIONS method is used to describe the communication options (HTTP methods that the server supports) for the target resource.
-     */
-    String OPTIONS = "OPTIONS";
-
     String value() default "";
 }
