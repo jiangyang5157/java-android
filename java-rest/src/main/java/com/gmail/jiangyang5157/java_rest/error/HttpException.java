@@ -5,22 +5,22 @@ package com.gmail.jiangyang5157.java_rest.error;
  */
 public class HttpException extends RestException {
 
-    final int mCode;
+    final int code;
 
     public HttpException(int code, String message) {
         super(message);
-        this.mCode = code;
+        this.code = code;
     }
 
     public int code() {
-        return mCode;
+        return code;
     }
 
     @Override
     public String toString() {
         return "HttpException{" +
-                mCode + '\'' +
-                mMessage + '\'' +
+                code + '\'' +
+                message + '\'' +
                 '}';
     }
 }

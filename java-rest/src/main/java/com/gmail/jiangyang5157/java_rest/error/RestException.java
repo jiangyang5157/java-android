@@ -5,21 +5,21 @@ package com.gmail.jiangyang5157.java_rest.error;
  */
 public class RestException extends RuntimeException {
 
-    final String mMessage;
+    final String message;
 
     public RestException(String message) {
         super(message);
-        this.mMessage = message;
+        this.message = message;
     }
 
     public String message() {
-        return mMessage;
+        return message;
     }
 
     @Override
     public String toString() {
         return "RestException{" +
-                mMessage + '\'' +
+                message + '\'' +
                 '}';
     }
 }
