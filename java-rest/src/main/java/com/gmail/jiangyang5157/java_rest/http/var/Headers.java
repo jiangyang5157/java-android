@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.java_rest.http.method;
+package com.gmail.jiangyang5157.java_rest.http.var;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -10,9 +10,15 @@ import java.lang.annotation.Target;
  * Created by Yang Jiang on September 03, 2017
  */
 
+/**
+ * eg:
+ *
+ * @Headers({ "X-Foo: Bar", "X-Ping: Pong"})
+ */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})
-@MethodType(MethodType.DELETE)
-public @interface DELETE {
+public @interface Headers {
+
+    String[] value();
 }

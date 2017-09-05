@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.java_rest.http;
+package com.gmail.jiangyang5157.java_rest.http.var;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -13,12 +13,12 @@ import java.lang.annotation.Target;
 /**
  * eg:
  *
- * @Headers({ "X-Foo: Bar", "X-Ping: Pong"})
+ * @GET("/") Call<ResponseBody> foo(@Header("Accept-Language") String acceptLang);
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD})
-public @interface Headers {
+@Target({ElementType.PARAMETER})
+public @interface Header {
 
-    String[] value();
+    String value();
 }

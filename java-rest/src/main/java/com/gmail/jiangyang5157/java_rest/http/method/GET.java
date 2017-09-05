@@ -10,9 +10,9 @@ import java.lang.annotation.Target;
  * Created by Yang Jiang on September 03, 2017
  */
 
-@Target({ElementType.METHOD})
-@Retention(RetentionPolicy.RUNTIME)
-@MethodType(MethodType.GET)
 @Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD})
+@MethodType(MethodType.GET)
 public @interface GET {
 }

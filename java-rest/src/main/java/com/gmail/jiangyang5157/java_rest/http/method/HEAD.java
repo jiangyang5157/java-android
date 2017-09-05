@@ -10,9 +10,9 @@ import java.lang.annotation.Target;
  * Created by Yang Jiang on September 03, 2017
  */
 
-@Target({ElementType.METHOD})
-@Retention(RetentionPolicy.RUNTIME)
-@MethodType(MethodType.HEAD)
 @Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD})
+@MethodType(MethodType.HEAD)
 public @interface HEAD {
 }

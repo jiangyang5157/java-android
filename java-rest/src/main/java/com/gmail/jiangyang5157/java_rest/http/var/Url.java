@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.java_rest.http;
+package com.gmail.jiangyang5157.java_rest.http.var;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -13,10 +13,10 @@ import java.lang.annotation.Target;
 /**
  * eg:
  *
- * @GET("/search") void list(@HeaderMap Map<String, String> headers);
+ * @GET Call<ResponseBody> list(@Url String url);
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.PARAMETER})
-public @interface HeaderMap {
+public @interface Url {
 }

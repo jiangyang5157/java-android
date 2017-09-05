@@ -1,4 +1,4 @@
-package com.gmail.jiangyang5157.java_rest.http;
+package com.gmail.jiangyang5157.java_rest.http.var;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -13,10 +13,16 @@ import java.lang.annotation.Target;
 /**
  * eg:
  *
- * @GET Call<ResponseBody> list(@Url String url);
+ * @GET("/image/{id}") Call<ResponseBody> example(@Path("id") int id);
+ * <p>
+ * @GET("/user/{name}") Call<ResponseBody> notEncoded(@Path(value="name", encoded=true) String name);
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.PARAMETER})
-public @interface Url {
+public @interface Path {
+
+    String value();
+
+    boolean encoded() default false;
 }
