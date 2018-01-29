@@ -7,11 +7,11 @@ buildscript {
 
     ext.android_compile_sdk_version = 25
 
-    ext.android_build_tools_version = "25.0.3"
+    ext.android_build_tools_version = "26.0.2"
 
     ext.appcompat_v7_version = '25.3.0'
 
-    ext.gradle_version = '3.0.0-beta2'
+    ext.gradle_version = '3.0.1'
 
     ext.junit_version = '4.12'
 
